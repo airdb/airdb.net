@@ -9,4 +9,4 @@ menu: main
 ---
 
 
-微信扫码，即可联系官方客服
+{{< figure src="/images/qrcode_wxkf.png" title="微信扫码，即可联系官方客服" >}}
