@@ -3,7 +3,7 @@ description = "The world’s fastest framework for building websites"
 ## Setting this to true will add a "noindex" to *EVERY* page on the site..
 removefromexternalsearch = false
 ## Gh repo for site footer (include trailing slash)
-ghrepo = "https://github.com/gohugoio/hugoDocs/"
+ghrepo = "https://github.com/airdb/airdb.net/"
 ## GH Repo for filing a new issue
 github_repo = "https://github.com/gohugoio/hugo/issues/new"
 ### Edit content repo (set to automatically enter "edit" mode; this is good for "improve this page" links)
@@ -11,7 +11,8 @@ ghdocsrepo = "https://github.com/gohugoio/hugoDocs/tree/master/docs"
 ## Gitter URL
 gitter = "https://gitter.im/spf13/hugo"
 ## Discuss Forum URL
-forum = "https://discourse.gohugo.io/"
+#forum = "https://discourse.gohugo.io/"
+forum = "https://bbs.airdb.net/"
 ## Google Tag Manager
 gtmid = ""
 

@@ -81,7 +81,7 @@
   url = "/zh/contribute/"
 
 [[global]]
-  name = "新闻"
+  name = "公益新闻"
   weight = 1
   identifier = "news"
   url = "/zh/news/"
@@ -93,13 +93,13 @@
   url = "/zh/documentation/"
 
 [[global]]
-  name = "主题"
+  name = "开发环境"
   weight = 10
   identifier = "themes"
-  url = "https://themes.gohugo.io/"
+  url = "/zh/dev/"
 
 [[global]]
-  name = "作品展示"
+  name = "成果展示"
   weight = 20
   identifier = "showcase"
   url = "/zh/showcase/"
@@ -111,11 +111,11 @@
   icon = true
   identifier = "community"
   post = "external"
-  url = "https://discourse.gohugo.io/"
+  url = "https://bbs.airdb.net/"
 
 [[global]]
   name = "GitHub"
   weight = 200
   identifier = "github"
   post = "external"
-  url = "https://github.com/gohugoio/hugo"
+  url = "https://github.com/airdb"
