@@ -6,7 +6,7 @@ date: {{ now.Format "2006-01-02" }}
 description: "A short description of this page."
 
 # The URL to the site on the internet.
-siteURL: https://gohugo.io/
+siteURL: https://airdb.net/
 
 # Link to the site's Hugo source code if public and you can/want to share.
 # Remove or leave blank if not needed/wanted.
