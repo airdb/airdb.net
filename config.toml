@@ -1,17 +1,19 @@
-baseURL = "https://gohugo.io/"
+baseURL = "https://airdb.net/"
 paginate =  100
-defaultContentLanguage = "en"
+defaultContentLanguage = "zh"
+defaultContentLanguageInSubdir = true
 enableEmoji = true
-timeZone = "Europe/Oslo"
+timeZone = "Asia/Shanghai"
 # Set the unicode character used for the "return" link in page footnotes.
 footnotereturnlinkcontents = "↩"
-languageCode = "en-us"
-title = "Hugo"
+#languageCode = "en-us"
+languageCode = "zh-CN"
+title = "Airdb"
 
  ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
 
-googleAnalytics = "UA-7131036-4"
+googleAnalytics = "UA-"
 
 pluralizeListTitles = false
 
@@ -65,7 +67,7 @@ weight = 10
 pattern = "2006"
 
 [social]
-twitter = "GoHugoIO"
+twitter = "xairdb"
 
 
 [imaging]
