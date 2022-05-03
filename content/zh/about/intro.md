@@ -1,5 +1,5 @@
 ---
-#title: 关于技术公益
+title: 技术公益
 #linktitle: 概览
 description: Better Tech Better Life.
 date: 2018-04-26
