@@ -4,7 +4,7 @@
 [[docs]]
   name = "技术公益"
   weight = 1
-  identifier = "about"
+  # identifier = "about"
   url = "/zh/about/intro"
 
 [[docs]]
@@ -18,73 +18,75 @@
   weight = 15
   identifier = "themes"
   post = "break"
-  url = "/zh/about/achievement"
+  #url = "/zh/about/achievement"
+  url = "/zh/about/todo"
 
 # Core languages.zh.menus
 
 [[docs]]
   name = "组织架构"
   weight = 20
-  identifier = "content-management"
-  post = "expanded"
-  url = "/zh/content-management/"
+  #identifier = "content-management"
+  #post = "expanded"
+  url = "/zh/about/todo"
 
 [[docs]]
   name = "产品组"
   weight = 25
-  identifier = "templates"
-  url = "/zh/templates/"
+  #identifier = "templates"
+  url = "/zh/about/todo"
 
 [[docs]]
   name = "设计组"
   weight = 26
   #identifier = "functions"
-  url = "/zh/functions/"
+  url = "/zh/about/todo"
 
 [[docs]]
   name = "开发组"
   weight = 27
   #identifier = "variables"
-  url = "/zh/variables/"
+  url = "/zh/about/todo"
 
 [[docs]]
   name = "运维组"
   weight = 29
   #identifier = "variables"
-  url = "/zh/variables/"
+  url = "/zh/about/todo"
 
 [[docs]]
   name = "运营组"
   weight = 30
   #identifier = "variables"
-  url = "/zh/variables/"
+  url = "/zh/about/todo"
 
 [[docs]]
   name = "后勤组"
   weight = 40
   post = "break"
   #identifier = "commands"
-  url = "/commands/"
+  url = "/zh/about/todo"
 
 # LOW LEVEL ITEMS
 [[docs]]
   name = "团队文化"
   weight = 70
   identifier = "tools"
-  url = "/zh/tools/"
+  url = "/zh/about/todo"
 
 [[docs]]
   name = "团队理念"
   weight = 80
   identifier = "hosting-and-deployment"
-  url = "/zh/hosting-and-deployment/"
+  url = "/zh/about/todo"
 
 [[docs]]
   name = "加入我们"
   weight = 100
   post = "break"
   identifier = "contribute"
-  url = "/zh/about/contribute"
+  #url = "/zh/about/contribute"
+  url = "/zh/about/todo"
 
 [[global]]
   name = "公益新闻"
@@ -93,10 +95,10 @@
   url = "/zh/news/"
 
 [[global]]
-  name = "文档"
+  name = "团队介绍"
   weight = 5
   identifier = "docs"
-  url = "/zh/documentation/"
+  url = "/zh/about/"
 
 [[global]]
   name = "开发环境"

@@ -9,8 +9,6 @@ categories: []
 keywords: []
 menu:
   docs:
-    parent: "about"
-    weight: 1
 weight: 1
 draft: false
 toc: false
