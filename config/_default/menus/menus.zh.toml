@@ -17,9 +17,16 @@
   name = "公益成果"
   weight = 15
   identifier = "themes"
-  post = "break"
   #url = "/zh/about/achievement"
   url = "/zh/about/todo"
+
+[[docs]]
+  name = "数据安全"
+  weight = 15
+  identifier = "themes"
+  post = "break"
+  #url = "/zh/about/achievement"
+  url = "/zh/about/security"
 
 # Core languages.zh.menus
 
