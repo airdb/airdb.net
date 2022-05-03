@@ -1,4 +1,5 @@
-baseURL = "https://airdb.net/"
+#baseURL = "https://airdb.net/"
+baseURL = ""
 paginate = 100
 defaultContentLanguage = "zh"
 enableEmoji = true

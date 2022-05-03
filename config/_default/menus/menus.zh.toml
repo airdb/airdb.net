@@ -2,83 +2,89 @@
 # Chinese menus
 
 [[docs]]
-  name = "关于 Hugo"
+  name = "技术公益"
   weight = 1
   identifier = "about"
-  url = "/zh/about/"
+  url = "/zh/about/intro"
 
 [[docs]]
-  name = "入门"
+  name = "团队协作"
   weight = 5
   identifier = "getting-started"
-  url = "/zh/getting-started/"
+  url = "/zh/about/teamwork"
 
 [[docs]]
-  name = "主题"
+  name = "公益成果"
   weight = 15
   identifier = "themes"
   post = "break"
-  url = "/zh/themes/"
+  url = "/zh/about/achievement"
 
 # Core languages.zh.menus
 
 [[docs]]
-  name = "内容管理"
+  name = "组织架构"
   weight = 20
   identifier = "content-management"
   post = "expanded"
   url = "/zh/content-management/"
 
 [[docs]]
-  name = "模板"
+  name = "产品组"
   weight = 25
   identifier = "templates"
   url = "/zh/templates/"
 
 [[docs]]
-  name = "函数"
-  weight = 30
-  identifier = "functions"
+  name = "设计组"
+  weight = 26
+  #identifier = "functions"
   url = "/zh/functions/"
 
 [[docs]]
-  name = "变量"
-  weight = 35
-  identifier = "variables"
+  name = "开发组"
+  weight = 27
+  #identifier = "variables"
   url = "/zh/variables/"
 
 [[docs]]
-  name = "CLI"
+  name = "运维组"
+  weight = 29
+  #identifier = "variables"
+  url = "/zh/variables/"
+
+[[docs]]
+  name = "运营组"
+  weight = 30
+  #identifier = "variables"
+  url = "/zh/variables/"
+
+[[docs]]
+  name = "后勤组"
   weight = 40
   post = "break"
-  identifier = "commands"
+  #identifier = "commands"
   url = "/commands/"
 
 # LOW LEVEL ITEMS
 [[docs]]
-  name = "故障排除"
-  weight = 60
-  identifier = "troubleshooting"
-  url = "/zh/troubleshooting/"
-
-[[docs]]
-  name = "工具"
+  name = "团队文化"
   weight = 70
   identifier = "tools"
   url = "/zh/tools/"
 
 [[docs]]
-  name = "托管与部署"
+  name = "团队理念"
   weight = 80
   identifier = "hosting-and-deployment"
   url = "/zh/hosting-and-deployment/"
 
 [[docs]]
-  name = "贡献"
+  name = "加入我们"
   weight = 100
   post = "break"
   identifier = "contribute"
-  url = "/zh/contribute/"
+  url = "/zh/about/contribute"
 
 [[global]]
   name = "公益新闻"

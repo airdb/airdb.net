@@ -1,49 +1,52 @@
   ---
-title: "世界上最快的网站构建框架 The world’s fastest framework for building websites"
+title: "技术公益团队"
 date: 2017-03-02T12:00:00-05:00
 features:
-  - heading: Blistering Speed
+  - heading: 产品
     image_path: /images/icon-fast.svg
-    tagline: What's modern about waiting for your site to build?
-    copy: Hugo is the fastest tool of its kind. At <1 ms per page, the average site builds in less than a second.
+    tagline: 产品呈现公益
+    copy: 1.负责网站、微信生态产品设计、规划。 2.具有一定公益背景，能够进行公益化设计，推向市场，服务不同的社会群体。
 
-  - heading: Robust Content Management
+  - heading: 技术
     image_path: /images/icon-content-management.svg
-    tagline: Flexibility rules. Hugo is a content strategist's dream.
-    copy: Hugo supports unlimited content types, taxonomies, menus, dynamic API-driven content, and more, all without plugins.
+    tagline: 软件改变公益
+    copy: 1. 维护网站，IT网络、软件配置；2. 软件架构，前端开发，后端开发；网络安全，数据备份等。
 
-  - heading: Shortcodes
+  - heading: 设计
     image_path: /images/icon-shortcodes.svg
-    tagline: Hugo's shortcodes are Markdown's hidden superpower.
-    copy: We love the beautiful simplicity of markdown’s syntax, but there are times when we want more flexibility. Hugo shortcodes allow for both beauty and flexibility.
+    tagline: 视觉感受公益
+    copy: 1. UI 设计，配合产品经理，设计产品、交互等；2. 网站、微信等图片元素设计；3. 运营海报设计等
 
-  - heading: Built-in Templates
+  - heading: 运营
     image_path: /images/icon-built-in-templates.svg
-    tagline: Hugo has common patterns to get your work done quickly.
-    copy: Hugo ships with pre-made templates to make quick work of SEO, commenting, analytics and other functions. One line of code, and you're done.
+    tagline: 社群强健公益
+    copy: 1. 公益社群运营，聚集技术公益领域志愿者；2. 协助公益组织，运营公众号，小程序，网站等。 
 
-  - heading: Multilingual and i18n
+  - heading: 策划
     image_path: /images/icon-multilingual2.svg
-    tagline: Polyglot baked in.
-    copy: Hugo provides full i18n support for multi-language sites with the same straightforward development experience Hugo users love in single-language sites.
+    tagline: 创新延续公益
+    copy: 1. 帮助社会团体策划公益活动； 2. 策划、组织技术公益线上活动
 
-  - heading: Custom Outputs
+  - heading: 行政
     image_path: /images/icon-custom-outputs.svg
-    tagline: HTML not enough?
-    copy: Hugo allows you to output your content in multiple formats, including JSON or AMP, and makes it easy to create your own.
+    tagline: 组织管理公益
+    copy: 1. 及时的了解成员动向；2. 推进团队文化建设; 3. 团队福利体系建设。
+
 sections:
-  - heading: "100s of Themes"
-    cta: Check out the Hugo's themes.
-    link: https://themes.gohugo.io/
+  - heading: "微信搜一搜 #宝贝回家"
+    cta: 了解更多公益寻人
+    link: https://www.baobeihuijia.com/
     color_classes: bg-accent-color white
     image: /images/homepage-screenshot-hugo-themes.jpg
-    copy: "Hugo provides a robust theming system that is easy to implement but capable of producing even the most complicated websites."
-  - heading: "Capable Templating"
-    cta: Get Started.
-    link: templates/
+    copy: 宝贝回家是一个运营超过 15 年的公益寻人组织，致力于万家团员，微信搜一搜，则开通了官方的寻人入口，更便利用户触达宝贝回家。
+  - heading: "AED 小搜"
+    cta: 了解更多急救
+    link: https://aid.run/aed
     color_classes: bg-primary-color-light black
     image: /images/home-page-templating-example.png
-    copy: "Hugo's Go-based templating provides just the right amount of logic to build anything from the simple to complex. If you prefer Jade/Pug-like syntax, you can also use Amber, Ace, or any combination of the three."
+    copy: AED 设备是急救必须设备，AED 小搜项目，通过展示附近的设备，可为救援队或急救人员，提供一些辅助设备，从而更好的进行急救。
 ---
 
-Hugo is one of the most popular open-source static site generators. With its amazing speed and flexibility, Hugo makes building websites fun again.
+一块努力，让好事发生
+
+Together, tech for good and make something happen
