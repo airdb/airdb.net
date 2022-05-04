@@ -41,7 +41,7 @@
   name = "产品组"
   weight = 25
   #identifier = "templates"
-  url = "/zh/about/todo"
+  url = "/zh/about/pm"
 
 [[docs]]
   name = "设计组"
