@@ -3,6 +3,10 @@ title: "开发环境"
 aliases: [/release-notes/]
 ---
 
+代码托管平台：
+- 主站 Github： https://github.com/airdb
+- 镜像 Gitee： https://gitee.com/airdb
+
 国内：
 - 用户系统： https://sso.airdb.net
 - 论坛： https://bbs.airdb.net

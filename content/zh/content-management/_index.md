@@ -5,10 +5,10 @@ description: Hugo 可以管理大型的静态网站，支持骨架、内容类�
 date: 2018-04-23
 publishdate: 2018-04-23
 lastmod: 2018-04-23
-menu:
-  docs:
-    parent: "content-management"
-    weight: 1
+# menu:
+#   docs:
+#     parent: "content-management"
+#     weight: 1
 keywords: [source, organization]
 categories: [content management]
 weight: 01	#rem

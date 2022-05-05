@@ -5,10 +5,10 @@ description: Go templating, template types and lookup order, shortcodes, and dat
 date: 2017-02-01
 publishdate: 2017-02-01
 lastmod: 2017-02-01
-menu:
-  docs:
-    parent: "templates"
-    weight: 01
+# menu:
+#   docs:
+#     parent: "templates"
+#     weight: 01
 weight: 01	#rem
 categories: [templates]
 keywords: []
