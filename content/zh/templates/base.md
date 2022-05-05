@@ -7,10 +7,10 @@ publishdate: 2018-08-11
 lastmod: 2017-02-01
 categories: [templates,fundamentals]
 keywords: [blocks,base]
-menu:
-  docs:
-    parent: "templates"
-    weight: 20
+# menu:
+#   docs:
+#     parent: "templates"
+#     weight: 20
 weight: 20
 sections_weight: 20
 draft: false

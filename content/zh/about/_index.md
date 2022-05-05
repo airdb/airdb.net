@@ -7,10 +7,10 @@ publishdate: 2018-04-26
 lastmod: 2018-04-26
 categories: []
 keywords: []
-menu:
-  docs:
-    parent: "about"
-    weight: 1
+# menu:
+#   docs:
+#     parent: "about"
+#     weight: 1
 weight: 1
 draft: false
 aliases: [/about-hugo/,/docs/]

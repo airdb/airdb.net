@@ -66,13 +66,21 @@
   weight = 30
   #identifier = "variables"
   url = "/zh/about/todo"
-
+ 
 [[docs]]
   name = "后勤组"
+  weight = 35
+  #identifier = "variables"
+  url = "/zh/about/todo" 
+
+[[docs]]
+  name = "兴趣组"
   weight = 40
   post = "break"
   #identifier = "commands"
-  url = "/zh/about/todo"
+  url = "/zh/about/interest"
+
+
 
 # LOW LEVEL ITEMS
 [[docs]]

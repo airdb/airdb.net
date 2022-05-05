@@ -7,10 +7,10 @@ publishdate: 2018-04-26
 lastmod: 2018-04-26
 categories: []
 keywords: []
-menu:
-  docs:
-    parent: "about"
-    weight: 1
+# menu:
+#   docs:
+#     parent: "about"
+#     weight: 1
 weight: 1
 draft: false
 aliases: [/about-hugo/,/docs/]
@@ -37,5 +37,5 @@ toc: false
 增加数据管理制度，定期备份，并且保证数据不离部署区域，所有数据迁移均由业务侧(服务的公益组织)决定。
 
 1. 定期备份，巡检。防止数据库被拖库。
-2. 数据不离部署区域（region/AZ），比如，服务部署在上海，数据在上海，如吴业务侧则不会将数据迁移至北京或深圳。
+2. 数据不离部署区域（region/AZ），比如，服务部署在上海，数据在上海，如无业务则不会将数据迁移至北京或深圳。
 3. 数据归属不变。 如业务方不再需要我们提供服务，则可以将数据导出提供给业务方。
