@@ -20,7 +20,7 @@ toc: false
 
 ## 总体目的
 
-为了我们的[使命](https://github.com/cncf/foundation/blob/master/charter.md#1-mission-of-the-cloud-native-computing-foundation)，在扩展CNCF技术版图、增加用户社区贡献的同时保持其完整性和提高贡献质量。
+为了我们的使命，在扩展CNCF技术版图、增加用户社区贡献的同时保持其完整性和提高贡献质量。
 
 ## 具体目标
 
@@ -40,13 +40,13 @@ CNCF SIG将监督和协调与最终用户和（或）项目需求的逻辑领域
 - 是一个长期存在的群体，向技术监督委员会报告
 - 主要由相关领域的公认专家领导，并得到其他贡献者的支持
 
-CNCF SIG以Kubernetes SIG为模型，旨在最小化差异以避免混淆——[此处](https://docs.google.com/document/d/1oSGhx5Hw7Hs_qawYB46BvRSPh0ZvFoxvHx-NWaf5Nsc/edit?usp=sharing)描述了两者之间不可避免的差异。
+CNCF SIG以Kubernetes SIG为模型，旨在最小化差异以避免混淆——此处描述了两者之间不可避免的差异。
 
 ## SIG的职责与权利
 
-CNCF SIG在TOC的指导下，提供高质量的专业技术知识、无偏见的信息及其领域内的领导力。TOC作为知情方和高效的执行委员会，利用这一输入来选择和推广适当的CNCF项目与实践，并向最终用户和云原生社区传播高质量的信息。可以很明确的说，SIG对CNCF项目没有直接的权力。特别是，CNCF SIG的创建并没有改变现有已成功实施的[章程](https://github.com/cncf/foundation/blob/master/charter.md)目标，即“项目......轻松地受技术监督委员会管辖”。
+CNCF SIG在TOC的指导下，提供高质量的专业技术知识、无偏见的信息及其领域内的领导力。TOC作为知情方和高效的执行委员会，利用这一输入来选择和推广适当的CNCF项目与实践，并向最终用户和云原生社区传播高质量的信息。可以很明确的说，SIG对CNCF项目没有直接的权力。特别是，CNCF SIG的创建并没有改变现有已成功实施的章程目标，即“项目......轻松地受技术监督委员会管辖”。
 
-SIG应努力向TOC提供易于理解和可投票的“提议（proposition）”，提议需要有明确的书面证据支持。这些提议可以是：“基于此[书面尽职调查](https://github.com/cncf/toc/blob/master/process/due-diligence-guidelines.md)“或”根据明确的目标和证据来批准这个landscape文件“。SIG提供给TOC的信息和建议必须高度准确和公正，这一点至关重要，这也是受整体上改进CNCF的目标所驱动，而不是使一个项目或公司受益于其他项目或公司。我们相信涨潮会抬升所有船只，这是我们的目标。
+SIG应努力向TOC提供易于理解和可投票的“提议（proposition）”，提议需要有明确的书面证据支持。这些提议可以是：“基于此书面尽职调查“或”根据明确的目标和证据来批准这个landscape文件“。SIG提供给TOC的信息和建议必须高度准确和公正，这一点至关重要，这也是受整体上改进CNCF的目标所驱动，而不是使一个项目或公司受益于其他项目或公司。我们相信涨潮会抬升所有船只，这是我们的目标。
 
 之所以这样设计是考虑到：
 
