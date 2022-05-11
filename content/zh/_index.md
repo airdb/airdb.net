@@ -37,13 +37,13 @@ sections:
     cta: 了解更多公益寻人
     link: https://www.baobeihuijia.com/
     color_classes: bg-accent-color white
-    image: /images/homepage-screenshot-hugo-themes.jpg
+    image: /images/index/homepage-bbhj.jpg
     copy: 宝贝回家是一个运营超过 15 年的公益寻人组织，致力于万家团员，微信搜一搜，则开通了官方的寻人入口，更便利用户触达宝贝回家。
   - heading: "AED 小搜"
     cta: 了解更多急救
     link: https://aid.run/aed
     color_classes: bg-primary-color-light black
-    image: /images/home-page-templating-example.png
+    image: /images/index/homepage-AED.jpg
     copy: AED 设备是急救必须设备，AED 小搜项目，通过展示附近的设备，可为救援队或急救人员，提供一些辅助设备，从而更好的进行急救。
 ---
 
