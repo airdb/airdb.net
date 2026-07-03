@@ -8,7 +8,8 @@ timeZone = "Asia/Shanghai"
 # Set the unicode character used for the "return" link in page footnotes.
 footnotereturnlinkcontents = "↩"
 #languageCode = "en-us"
-languageCode = "zh-CN"
+locale = "zh-cn"
+
 title = "Airdb"
 
  ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
