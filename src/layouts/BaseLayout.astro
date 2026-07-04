@@ -1,0 +1,79 @@
+---
+import "../styles/global.css";
+
+type NavItem = {
+  name?: string;
+  url?: string;
+};
+
+const {
+  title,
+  description,
+  globalNav = [],
+  sidebarNav = [],
+  currentPath = "/",
+} = Astro.props as {
+  title: string;
+  description?: string;
+  globalNav?: NavItem[];
+  sidebarNav?: NavItem[];
+  currentPath?: string;
+};
+
+function isActive(url?: string) {
+  if (!url) {
+    return false;
+  }
+
+  return currentPath === url || currentPath.startsWith(url.endsWith("/") ? url : `${url}/`);
+}
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="shell">
+        <a class="brand" href="/zh/">
+          <span class="brand-mark">airdb</span>
+          <span class="brand-copy">持续公益，长期价值</span>
+        </a>
+        <nav class="top-nav" aria-label="Global">
+          {globalNav.map((item) => (
+            <a class:list={[isActive(item.url) && "active"]} href={item.url}>
+              {item.name}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <main class:list={["shell", sidebarNav.length > 0 && "with-sidebar"]}>
+      {sidebarNav.length > 0 && (
+        <aside class="sidebar">
+          <div class="sidebar-panel">
+            <p class="sidebar-label">目录</p>
+            <nav aria-label="Section">
+              {sidebarNav.map((item) => (
+                <a class:list={[isActive(item.url) && "active"]} href={item.url}>
+                  {item.name}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </aside>
+      )}
+
+      <div class="page-content">
+        <slot />
+      </div>
+    </main>
+  </body>
+</html>

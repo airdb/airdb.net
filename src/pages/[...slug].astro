@@ -1,0 +1,113 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import {
+  getAllPages,
+  getChildren,
+  getLanguageMenus,
+  getPageBySegments,
+  getSiblingPages,
+} from "../lib/content";
+
+export function getStaticPaths() {
+  return getAllPages().map((page) => ({
+    params: {
+      slug: page.routeSegments.join("/"),
+    },
+  }));
+}
+
+const slug = Astro.params.slug ?? "";
+const segments = slug.split("/").filter(Boolean);
+const page = getPageBySegments(segments);
+
+if (!page) {
+  throw new Error(`Missing page for route: ${slug}`);
+}
+
+const menus = getLanguageMenus(page.lang);
+const currentPath = page.routePath;
+const children = getChildren(page);
+const siblings = getSiblingPages(page);
+const sidebarNav =
+  page.lang === "zh" && currentPath.startsWith("/zh/about")
+    ? menus.docs
+    : siblings.map((item) => ({ name: item.title, url: item.routePath }));
+
+const features = Array.isArray(page.data.features) ? page.data.features : [];
+const sections = Array.isArray(page.data.sections) ? page.data.sections : [];
+---
+
+<BaseLayout
+  title={`${page.title} | airdb`}
+  description={page.description}
+  globalNav={menus.global}
+  sidebarNav={sidebarNav}
+  currentPath={currentPath}
+>
+  {features.length > 0 ? (
+    <>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Tech For Good</p>
+          <h1>{page.title}</h1>
+          <div class="lede" set:html={page.html} />
+        </div>
+      </section>
+
+      <section class="feature-grid">
+        {features.map((feature) => (
+          <article class="feature-card">
+            {feature.image_path && <img src={feature.image_path} alt="" loading="lazy" />}
+            <h2>{feature.heading}</h2>
+            <p class="feature-tagline">{feature.tagline}</p>
+            <p>{feature.copy}</p>
+          </article>
+        ))}
+      </section>
+
+      {sections.length > 0 && (
+        <section class="spotlights">
+          {sections.map((section) => (
+            <article class="spotlight">
+              <div class="spotlight-copy">
+                <p class="eyebrow">公益项目</p>
+                <h2>{section.heading}</h2>
+                <p>{section.copy}</p>
+                {section.link && (
+                  <a class="button-link" href={section.link}>
+                    {section.cta ?? "了解更多"}
+                  </a>
+                )}
+              </div>
+              {section.image && <img src={section.image} alt={section.heading} loading="lazy" />}
+            </article>
+          ))}
+        </section>
+      )}
+    </>
+  ) : (
+    <article class="article-shell">
+      <header class="article-header">
+        <p class="eyebrow">{page.section ?? page.lang}</p>
+        <h1>{page.title}</h1>
+        {page.description && <p class="article-description">{page.description}</p>}
+      </header>
+
+      <div class="prose" set:html={page.html} />
+
+      {children.length > 0 && (
+        <section class="children-grid">
+          <h2>继续阅读</h2>
+          <div class="card-grid">
+            {children.map((child) => (
+              <a class="card-link" href={child.routePath}>
+                <h3>{child.title}</h3>
+                <p>{child.description}</p>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+    </article>
+  )}
+</BaseLayout>
