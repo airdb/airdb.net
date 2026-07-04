@@ -9,6 +9,7 @@ import {
   getSiblingPages,
 } from "../lib/content";
 import { getLanguageMeta } from "../config/site";
+import { HOME_CONTENT } from "../config/home";
 
 export function getStaticPaths() {
   return getAllPages().map((page) => ({
@@ -31,6 +32,7 @@ const currentPath = page.routePath;
 const children = getChildren(page);
 const siblings = getSiblingPages(page);
 const languageMeta = getLanguageMeta(page.lang);
+const homeContent = HOME_CONTENT[page.lang] ?? HOME_CONTENT.zh;
 const languageOptions = getLanguageOptions(page, {
   zh: "中文",
   cc: "EN",
@@ -42,43 +44,20 @@ const sidebarNav =
 
 const features = Array.isArray(page.data.features) ? page.data.features : [];
 const sections = Array.isArray(page.data.sections) ? page.data.sections : [];
-const homeCards =
-  children.length > 0
-    ? children.slice(0, 3).map((item) => ({
-        title: item.title,
-        description: item.description,
-        url: item.routePath,
-      }))
-    : menus.global.slice(0, 3).map((item) => ({
-        title: item.name ?? "",
-        description: page.description,
-        url: item.url ?? languageMeta.homePath,
-      }));
-
-const projectImages = [
-  "/images/index/homepage-bbhj.jpg",
-  "/images/index/homepage-AED.jpg",
-  "/images/gopher-hero.svg",
-];
-
-const homeStats =
-  page.lang === "zh"
-    ? [
-        { value: "45+", label: "长期成员" },
-        { value: "2018", label: "正式成立" },
-        { value: "3", label: "重点公益方向" },
-      ]
-    : [
-        { value: "3", label: "service tracks" },
-        { value: "100+", label: "client targets" },
-        { value: "5y", label: "growth horizon" },
-      ];
+const iconMap: Record<string, string> = {
+  data: '<svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="6.5" ry="2.8"></ellipse><path d="M5.5 5v6c0 1.6 2.9 2.9 6.5 2.9s6.5-1.3 6.5-2.9V5"></path><path d="M5.5 11v6c0 1.6 2.9 2.9 6.5 2.9s6.5-1.3 6.5-2.9v-6"></path></svg>',
+  product: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6L3.5 10.5 8 15"></path><path d="M16 6l4.5 4.5L16 15"></path><path d="M13.5 4L10.5 17"></path></svg>',
+  cloud: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 18h9.5a4 4 0 0 0 .2-8A5.7 5.7 0 0 0 6.5 8.3 4.2 4.2 0 0 0 7.5 18Z"></path></svg>',
+  training: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="2.2"></circle><circle cx="6.3" cy="10" r="1.8"></circle><circle cx="17.7" cy="10" r="1.8"></circle><path d="M4.5 18c.6-2.3 2.3-3.5 4.8-3.5h5.4c2.5 0 4.2 1.2 4.8 3.5"></path></svg>',
+  network: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="4.5" r="1.7"></circle><circle cx="5.5" cy="10.5" r="1.7"></circle><circle cx="18.5" cy="10.5" r="1.7"></circle><circle cx="8" cy="18" r="1.7"></circle><circle cx="16" cy="18" r="1.7"></circle><path d="M10.8 5.6 7 9.2"></path><path d="M13.2 5.6 17 9.2"></path><path d="M7 11.8 8.8 16"></path><path d="M17 11.8 15.2 16"></path><path d="M9.8 18h4.4"></path></svg>',
+  governance: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 18.5 6v5.2c0 4.2-2.4 7-6.5 9.3-4.1-2.3-6.5-5.1-6.5-9.3V6L12 3.5Z"></path><path d="m9.5 12 1.7 1.8 3.4-3.9"></path></svg>',
+};
 ---
 
 <BaseLayout
   title={`${page.title} | airdb`}
   description={page.description}
-  globalNav={menus.global}
+  globalNav={page.isIndex ? homeContent.nav : menus.global}
   sidebarNav={sidebarNav}
   languageOptions={languageOptions}
   currentPath={currentPath}
@@ -88,124 +67,122 @@ const homeStats =
   footerTitle={languageMeta.footerTitle}
   footerCopy={languageMeta.footerCopy}
 >
-  {features.length > 0 ? (
+  {page.isIndex ? (
     <>
-      <section class="home-hero">
+      <section class="home-hero home-hero-reference">
         <div class="hero-copy">
-          <h1>{page.title}</h1>
-          <div class="lede" set:html={page.html} />
+          <h1>{homeContent.heroTitle}</h1>
+          <p class="hero-body">{homeContent.heroBody}</p>
           <div class="hero-actions">
-            <a class="button-link" href={menus.docs[0]?.url ?? languageMeta.homePath}>
-              {languageMeta.primaryActionLabel}
+            <a class="button-link" href={homeContent.nav[1]?.url ?? languageMeta.homePath}>
+              {homeContent.primaryAction}
             </a>
-            <a class="button-secondary" href={sections[0]?.link ?? menus.global[0]?.url ?? languageMeta.homePath}>
-              {languageMeta.secondaryActionLabel}
+            <a class="button-secondary" href={homeContent.nav[2]?.url ?? languageMeta.homePath}>
+              {homeContent.secondaryAction}
             </a>
-          </div>
-          <div class="hero-stats">
-            {homeStats.map((item) => (
-              <div class="stat-chip">
-                <strong>{item.value}</strong>
-                <span>{item.label}</span>
-              </div>
-            ))}
           </div>
         </div>
 
-        <div class="hero-visual">
-          <article class="visual-panel visual-panel-main">
-            <img src={projectImages[0]} alt="" loading="lazy" />
+        <div class="hero-collage">
+          <article class="hero-photo hero-photo-main">
+            <img src="/images/brand/hero-family.jpg" alt="" loading="eager" />
           </article>
-          <article class="visual-panel visual-panel-small">
-            <img src={projectImages[1]} alt="" loading="lazy" />
+          <article class="hero-photo hero-photo-device">
+            <img src="/images/brand/hero-device.jpg" alt="" loading="eager" />
           </article>
-          <article class="visual-note">
-            <p>{languageMeta.homeQuickLabel}</p>
+          <article class="hero-photo hero-photo-solar">
+            <img src="/images/brand/hero-solar.jpg" alt="" loading="eager" />
+          </article>
+          <div class="hero-focus-card">
+            <h2>{homeContent.focusTitle}</h2>
             <ul>
-              {features.slice(0, 3).map((feature) => (
-                <li>{feature.heading}</li>
+              {homeContent.focusItems.map((item) => (
+                <li>{item}</li>
               ))}
             </ul>
-          </article>
+          </div>
+          <div class="hero-impact-card">
+            <div class="impact-heading">
+              <span>{homeContent.impactTitle}</span>
+              <small>{homeContent.impactYear}</small>
+            </div>
+            <div class="impact-stats">
+              {homeContent.stats.map((item) => (
+                <div>
+                  <strong>{item.value}</strong>
+                  <span>{item.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="hero-ambient hero-ambient-left"></div>
+          <div class="hero-ambient hero-ambient-right"></div>
+          <div class="hero-dotted-grid"></div>
+          <img class="hero-mountain" src="/images/brand/bg-mountains.jpg" alt="" loading="eager" />
         </div>
       </section>
 
-      <section class="home-strip">
-        <div class="section-heading">
-          <h2>{languageMeta.homeHighlightsTitle}</h2>
-          <p>{page.description}</p>
+      <section class="capabilities-section">
+        <div class="section-heading section-heading-centered">
+          <h2>{homeContent.capabilityTitle}</h2>
         </div>
-        {features.map((feature) => (
-          <article class="feature-card">
-            {feature.image_path && <img src={feature.image_path} alt="" loading="lazy" />}
-            <h2>{feature.heading}</h2>
-            <p class="feature-tagline">{feature.tagline}</p>
-            <p>{feature.copy}</p>
+        <div class="capability-grid">
+          {homeContent.capabilities.map((item) => (
+            <article class="capability-card">
+              <div class="capability-icon" set:html={iconMap[item.key]} />
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="story-grid">
+        {homeContent.stories.map((story) => (
+          <article class:list={["story-card", story.tone === "dark" && "story-card-dark"]}>
+            <img src={story.image} alt="" loading="lazy" />
+            <div class="story-copy">
+              <span>{story.eyebrow}</span>
+              <h3>{story.title}</h3>
+              <p>{story.copy}</p>
+              <a class:list={["story-link", story.tone === "dark" && "story-link-light"]} href={languageMeta.homePath}>
+                {story.cta}
+              </a>
+            </div>
           </article>
         ))}
       </section>
 
-      {sections.length > 0 && (
-        <section class="spotlights">
-          <div class="section-heading">
-            <h2>{languageMeta.homeProjectsTitle}</h2>
-            <p>{languageMeta.footerCopy}</p>
+      <section class="reference-footer">
+        <div class="footer-brand-column">
+          <p class="footer-logo">airdb</p>
+          <p>{homeContent.footerIntro}</p>
+          <small>&copy; 2024 airdb. {page.lang === "zh" ? "保留所有权利。" : "All rights reserved."}</small>
+        </div>
+        {homeContent.footerColumns.map((column) => (
+          <div class="footer-link-column">
+            <h3>{column.title}</h3>
+            <ul>
+              {column.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
           </div>
-          {sections.map((section) => (
-            <article class="spotlight">
-              <div class="spotlight-copy">
-                <h2>{section.heading}</h2>
-                <p>{section.copy}</p>
-                {section.link && (
-                  <a class="button-link" href={section.link}>
-                    {section.cta ?? "了解更多"}
-                  </a>
-                )}
-              </div>
-              {section.image && <img src={section.image} alt={section.heading} loading="lazy" />}
-            </article>
-          ))}
-        </section>
-      )}
-
-      <section class="home-links">
-        <div class="section-heading">
-          <h2>{languageMeta.articleContinueLabel}</h2>
-          <p>{languageMeta.newsLabel}</p>
-        </div>
-        <div class="card-grid">
-          {homeCards.map((item) => (
-            <a class="card-link" href={item.url}>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </a>
-          ))}
-        </div>
-      </section>
-    </>
-  ) : page.isIndex && children.length > 0 ? (
-    <>
-      <section class="home-hero home-hero-compact">
-        <div class="hero-copy">
-          <h1>{page.title}</h1>
-          <div class="lede" set:html={page.html} />
-          <div class="hero-actions">
-            <a class="button-link" href={children[0]?.routePath ?? languageMeta.homePath}>
-              {languageMeta.primaryActionLabel}
-            </a>
-            <a class="button-secondary" href={children[1]?.routePath ?? languageMeta.homePath}>
-              {languageMeta.secondaryActionLabel}
-            </a>
+        ))}
+        <div class="footer-subscribe">
+          <h3>{homeContent.subscribeTitle}</h3>
+          <p>{homeContent.subscribeCopy}</p>
+          <div class="subscribe-form">
+            <input type="email" placeholder={homeContent.subscribePlaceholder} />
+            <button type="button">{homeContent.subscribeButton}</button>
           </div>
-        </div>
-        <div class="hero-stack">
-          {homeCards.map((item, index) => (
-            <a class:list={["summary-card", index === 0 && "summary-card-wide"]} href={item.url}>
-              <span>{languageMeta.homeProjectLabel}</span>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </a>
-          ))}
+          <div class="social-row">
+            <span>in</span>
+            <span>X</span>
+            <span>◎</span>
+            <span>▶</span>
+            <span>✉</span>
+          </div>
         </div>
       </section>
     </>

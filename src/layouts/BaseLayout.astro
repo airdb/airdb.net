@@ -59,26 +59,26 @@ function isActive(url?: string) {
         <div class="header-bar">
           <a class="brand" href={homePath}>
             <span class="brand-mark">airdb</span>
-            <span class="brand-copy">{brandTagline}</span>
           </a>
-          <div class="header-actions">
-            <nav class="top-nav" aria-label="Global">
-              {globalNav.map((item) => (
-                <a class:list={[isActive(item.url) && "active"]} href={item.url}>
-                  {item.name}
-                </a>
-              ))}
-            </nav>
-            {languageOptions.length > 0 && (
-              <div class="language-switch" aria-label="Language switcher">
-                {languageOptions.map((item) => (
+          <nav class="top-nav" aria-label="Global">
+            {globalNav.map((item) => (
+              <a class:list={[isActive(item.url) && "active"]} href={item.url}>
+                {item.name}
+              </a>
+            ))}
+          </nav>
+          {languageOptions.length > 0 && (
+            <div class="language-switch" aria-label="Language switcher">
+              {languageOptions.map((item, index) => (
+                <>
+                  {index > 0 && <span class="language-divider">/</span>}
                   <a class:list={["language-pill", item.active && "active"]} href={item.url} hreflang={item.code}>
                     {item.label}
                   </a>
-                ))}
-              </div>
-            )}
-          </div>
+                </>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </header>

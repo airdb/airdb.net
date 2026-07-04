@@ -291,7 +291,17 @@ const languageRouteMap: Record<string, Record<string, string>> = {
 };
 
 export function getLanguageOptions(page: SitePage, labels: Record<string, string>) {
-  const available = getAvailableLanguages();
+  const available = getAvailableLanguages().sort((left, right) => {
+    if (left === page.lang) {
+      return -1;
+    }
+
+    if (right === page.lang) {
+      return 1;
+    }
+
+    return left.localeCompare(right);
+  });
 
   return available.map((code) => {
     if (code === page.lang) {
