@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import type { LanguageOption } from "../lib/content";
 
 type NavItem = {
   name?: string;
@@ -11,13 +12,25 @@ const {
   description,
   globalNav = [],
   sidebarNav = [],
+  languageOptions = [],
   currentPath = "/",
+  htmlLang = "zh-CN",
+  homePath = "/zh/",
+  brandTagline = "",
+  footerTitle = "",
+  footerCopy = "",
 } = Astro.props as {
   title: string;
   description?: string;
   globalNav?: NavItem[];
   sidebarNav?: NavItem[];
+  languageOptions?: LanguageOption[];
   currentPath?: string;
+  htmlLang?: string;
+  homePath?: string;
+  brandTagline?: string;
+  footerTitle?: string;
+  footerCopy?: string;
 };
 
 function isActive(url?: string) {
@@ -30,7 +43,7 @@ function isActive(url?: string) {
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang={htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -39,19 +52,34 @@ function isActive(url?: string) {
     <link rel="icon" href="/favicon.ico" />
   </head>
   <body>
+    <div class="page-orbit page-orbit-left"></div>
+    <div class="page-orbit page-orbit-right"></div>
     <header class="site-header">
       <div class="shell">
-        <a class="brand" href="/zh/">
-          <span class="brand-mark">airdb</span>
-          <span class="brand-copy">持续公益，长期价值</span>
-        </a>
-        <nav class="top-nav" aria-label="Global">
-          {globalNav.map((item) => (
-            <a class:list={[isActive(item.url) && "active"]} href={item.url}>
-              {item.name}
-            </a>
-          ))}
-        </nav>
+        <div class="header-bar">
+          <a class="brand" href={homePath}>
+            <span class="brand-mark">airdb</span>
+            <span class="brand-copy">{brandTagline}</span>
+          </a>
+          <div class="header-actions">
+            <nav class="top-nav" aria-label="Global">
+              {globalNav.map((item) => (
+                <a class:list={[isActive(item.url) && "active"]} href={item.url}>
+                  {item.name}
+                </a>
+              ))}
+            </nav>
+            {languageOptions.length > 0 && (
+              <div class="language-switch" aria-label="Language switcher">
+                {languageOptions.map((item) => (
+                  <a class:list={["language-pill", item.active && "active"]} href={item.url} hreflang={item.code}>
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </header>
 
@@ -75,5 +103,15 @@ function isActive(url?: string) {
         <slot />
       </div>
     </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-shell">
+        <div>
+          <p class="footer-mark">airdb</p>
+          <h2>{footerTitle}</h2>
+        </div>
+        <p>{footerCopy}</p>
+      </div>
+    </footer>
   </body>
 </html>

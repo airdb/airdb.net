@@ -1,0 +1,34 @@
+[[docs]]
+  name = "Overview"
+  weight = 1
+  url = "/cc/about/"
+
+[[docs]]
+  name = "News"
+  weight = 5
+  url = "/cc/post/"
+
+[[docs]]
+  name = "Contact"
+  weight = 10
+  url = "/cc/contact/"
+
+[[global]]
+  name = "About"
+  weight = 1
+  url = "/cc/about/"
+
+[[global]]
+  name = "News"
+  weight = 5
+  url = "/cc/post/"
+
+[[global]]
+  name = "Contact"
+  weight = 10
+  url = "/cc/contact/"
+
+[[global]]
+  name = "GitHub"
+  weight = 50
+  url = "https://github.com/airdb"

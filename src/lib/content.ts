@@ -51,6 +51,13 @@ export type SitePage = {
   data: Record<string, any>;
 };
 
+export type LanguageOption = {
+  code: string;
+  label: string;
+  url: string;
+  active: boolean;
+};
+
 function escapeHtml(value: string) {
   return value
     .replaceAll("&", "&amp;")
@@ -182,7 +189,7 @@ function loadMenusForLanguage(language: string): MenuGroups {
 const allPages = readMarkdownFiles(CONTENT_DIR)
   .map((filePath) => {
     const source = fs.readFileSync(filePath, "utf8");
-    const parsed = matter(source);
+    const parsed = matter(source.replace(/^\uFEFF?/, "").trimStart());
     const routeSegments = normalizeRoute(filePath);
     const routePath = `/${routeSegments.join("/")}/`;
     const processedBody = preprocessShortcodes(parsed.content);
@@ -255,4 +262,51 @@ export function getLanguageMenus(language: string) {
 
 export function getAvailableLanguages() {
   return Array.from(new Set(allPages.map((page) => page.lang))).sort();
+}
+
+const languageRouteMap: Record<string, Record<string, string>> = {
+  zh: {
+    "": "/cc/",
+    about: "/cc/about/",
+    "about/intro": "/cc/about/",
+    "about/teamwork": "/cc/about/",
+    "about/security": "/cc/about/",
+    "about/pm": "/cc/about/",
+    "about/interest": "/cc/about/",
+    "about/todo": "/cc/about/",
+    "about/contribute": "/cc/contact/",
+    news: "/cc/post/",
+    documentation: "/cc/about/",
+    dev: "/cc/contact/",
+  },
+  cc: {
+    "": "/zh/",
+    about: "/zh/about/intro/",
+    contact: "/zh/about/contribute/",
+    post: "/zh/news/",
+    "post/chapter-1": "/zh/about/contribute/",
+    "post/chapter-2": "/zh/news/",
+    "post/chapter-3": "/zh/news/",
+  },
+};
+
+export function getLanguageOptions(page: SitePage, labels: Record<string, string>) {
+  const available = getAvailableLanguages();
+
+  return available.map((code) => {
+    if (code === page.lang) {
+      return { code, label: labels[code] ?? code.toUpperCase(), url: page.routePath, active: true };
+    }
+
+    const restSlug = page.routeSegments.slice(1).join("/");
+    const directMatch = getPageBySegments([code, ...page.routeSegments.slice(1)]);
+    const mappedPath = languageRouteMap[page.lang]?.[restSlug] ?? languageRouteMap[page.lang]?.[""];
+
+    return {
+      code,
+      label: labels[code] ?? code.toUpperCase(),
+      url: directMatch?.routePath ?? mappedPath ?? `/${code}/`,
+      active: false,
+    };
+  });
 }

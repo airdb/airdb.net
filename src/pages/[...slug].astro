@@ -4,9 +4,11 @@ import {
   getAllPages,
   getChildren,
   getLanguageMenus,
+  getLanguageOptions,
   getPageBySegments,
   getSiblingPages,
 } from "../lib/content";
+import { getLanguageMeta } from "../config/site";
 
 export function getStaticPaths() {
   return getAllPages().map((page) => ({
@@ -28,6 +30,11 @@ const menus = getLanguageMenus(page.lang);
 const currentPath = page.routePath;
 const children = getChildren(page);
 const siblings = getSiblingPages(page);
+const languageMeta = getLanguageMeta(page.lang);
+const languageOptions = getLanguageOptions(page, {
+  zh: "中文",
+  cc: "EN",
+});
 const sidebarNav =
   page.lang === "zh" && currentPath.startsWith("/zh/about")
     ? menus.docs
@@ -35,6 +42,37 @@ const sidebarNav =
 
 const features = Array.isArray(page.data.features) ? page.data.features : [];
 const sections = Array.isArray(page.data.sections) ? page.data.sections : [];
+const homeCards =
+  children.length > 0
+    ? children.slice(0, 3).map((item) => ({
+        title: item.title,
+        description: item.description,
+        url: item.routePath,
+      }))
+    : menus.global.slice(0, 3).map((item) => ({
+        title: item.name ?? "",
+        description: page.description,
+        url: item.url ?? languageMeta.homePath,
+      }));
+
+const projectImages = [
+  "/images/index/homepage-bbhj.jpg",
+  "/images/index/homepage-AED.jpg",
+  "/images/gopher-hero.svg",
+];
+
+const homeStats =
+  page.lang === "zh"
+    ? [
+        { value: "45+", label: "长期成员" },
+        { value: "2018", label: "正式成立" },
+        { value: "3", label: "重点公益方向" },
+      ]
+    : [
+        { value: "3", label: "service tracks" },
+        { value: "100+", label: "client targets" },
+        { value: "5y", label: "growth horizon" },
+      ];
 ---
 
 <BaseLayout
@@ -42,19 +80,61 @@ const sections = Array.isArray(page.data.sections) ? page.data.sections : [];
   description={page.description}
   globalNav={menus.global}
   sidebarNav={sidebarNav}
+  languageOptions={languageOptions}
   currentPath={currentPath}
+  htmlLang={languageMeta.htmlLang}
+  homePath={languageMeta.homePath}
+  brandTagline={languageMeta.brandTagline}
+  footerTitle={languageMeta.footerTitle}
+  footerCopy={languageMeta.footerCopy}
 >
   {features.length > 0 ? (
     <>
-      <section class="hero">
-        <div>
-          <p class="eyebrow">Tech For Good</p>
+      <section class="home-hero">
+        <div class="hero-copy">
           <h1>{page.title}</h1>
           <div class="lede" set:html={page.html} />
+          <div class="hero-actions">
+            <a class="button-link" href={menus.docs[0]?.url ?? languageMeta.homePath}>
+              {languageMeta.primaryActionLabel}
+            </a>
+            <a class="button-secondary" href={sections[0]?.link ?? menus.global[0]?.url ?? languageMeta.homePath}>
+              {languageMeta.secondaryActionLabel}
+            </a>
+          </div>
+          <div class="hero-stats">
+            {homeStats.map((item) => (
+              <div class="stat-chip">
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <article class="visual-panel visual-panel-main">
+            <img src={projectImages[0]} alt="" loading="lazy" />
+          </article>
+          <article class="visual-panel visual-panel-small">
+            <img src={projectImages[1]} alt="" loading="lazy" />
+          </article>
+          <article class="visual-note">
+            <p>{languageMeta.homeQuickLabel}</p>
+            <ul>
+              {features.slice(0, 3).map((feature) => (
+                <li>{feature.heading}</li>
+              ))}
+            </ul>
+          </article>
         </div>
       </section>
 
-      <section class="feature-grid">
+      <section class="home-strip">
+        <div class="section-heading">
+          <h2>{languageMeta.homeHighlightsTitle}</h2>
+          <p>{page.description}</p>
+        </div>
         {features.map((feature) => (
           <article class="feature-card">
             {feature.image_path && <img src={feature.image_path} alt="" loading="lazy" />}
@@ -67,10 +147,13 @@ const sections = Array.isArray(page.data.sections) ? page.data.sections : [];
 
       {sections.length > 0 && (
         <section class="spotlights">
+          <div class="section-heading">
+            <h2>{languageMeta.homeProjectsTitle}</h2>
+            <p>{languageMeta.footerCopy}</p>
+          </div>
           {sections.map((section) => (
             <article class="spotlight">
               <div class="spotlight-copy">
-                <p class="eyebrow">公益项目</p>
                 <h2>{section.heading}</h2>
                 <p>{section.copy}</p>
                 {section.link && (
@@ -84,20 +167,64 @@ const sections = Array.isArray(page.data.sections) ? page.data.sections : [];
           ))}
         </section>
       )}
+
+      <section class="home-links">
+        <div class="section-heading">
+          <h2>{languageMeta.articleContinueLabel}</h2>
+          <p>{languageMeta.newsLabel}</p>
+        </div>
+        <div class="card-grid">
+          {homeCards.map((item) => (
+            <a class="card-link" href={item.url}>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    </>
+  ) : page.isIndex && children.length > 0 ? (
+    <>
+      <section class="home-hero home-hero-compact">
+        <div class="hero-copy">
+          <h1>{page.title}</h1>
+          <div class="lede" set:html={page.html} />
+          <div class="hero-actions">
+            <a class="button-link" href={children[0]?.routePath ?? languageMeta.homePath}>
+              {languageMeta.primaryActionLabel}
+            </a>
+            <a class="button-secondary" href={children[1]?.routePath ?? languageMeta.homePath}>
+              {languageMeta.secondaryActionLabel}
+            </a>
+          </div>
+        </div>
+        <div class="hero-stack">
+          {homeCards.map((item, index) => (
+            <a class:list={["summary-card", index === 0 && "summary-card-wide"]} href={item.url}>
+              <span>{languageMeta.homeProjectLabel}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </a>
+          ))}
+        </div>
+      </section>
     </>
   ) : (
     <article class="article-shell">
       <header class="article-header">
-        <p class="eyebrow">{page.section ?? page.lang}</p>
         <h1>{page.title}</h1>
         {page.description && <p class="article-description">{page.description}</p>}
+        <div class="article-meta">
+          <span>{languageMeta.articleLeadLabel}</span>
+          <span>{page.section ?? page.lang}</span>
+        </div>
       </header>
 
       <div class="prose" set:html={page.html} />
 
       {children.length > 0 && (
         <section class="children-grid">
-          <h2>继续阅读</h2>
+          <h2>{languageMeta.articleContinueLabel}</h2>
           <div class="card-grid">
             {children.map((child) => (
               <a class="card-link" href={child.routePath}>
