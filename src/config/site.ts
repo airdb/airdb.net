@@ -14,6 +14,9 @@ export type LanguageMeta = {
   sidebarLabel: string;
   footerTitle: string;
   footerCopy: string;
+  copyrightLabel: string;
+  filingLabel: string;
+  filingUrl: string;
 };
 
 export const LANGUAGE_META: Record<string, LanguageMeta> = {
@@ -30,7 +33,10 @@ export const LANGUAGE_META: Record<string, LanguageMeta> = {
     articleContinueLabel: "继续阅读",
     sidebarLabel: "目录",
     footerTitle: "用技术把好事做长久",
-    footerCopy: "连接产品、设计、开发、运营与安全能力，为公益组织提供长期稳定的数字化支持。",
+    footerCopy: "持续为公益组织提供长期稳定的数字化支持。",
+    copyrightLabel: "©2026 airdb 保留所有权利",
+    filingLabel: "陕ICP备2022002988号-1",
+    filingUrl: "https://beian.miit.gov.cn/",
   },
   cc: {
     code: "cc",
@@ -46,6 +52,9 @@ export const LANGUAGE_META: Record<string, LanguageMeta> = {
     sidebarLabel: "Contents",
     footerTitle: "Designing practical technology for social good",
     footerCopy: "Airdb combines product thinking, engineering, operations, and digital systems to support public-interest initiatives with clarity and continuity.",
+    copyrightLabel: "©2026 airdb. All rights reserved.",
+    filingLabel: "Shaanxi ICP 2022002988-1",
+    filingUrl: "https://beian.miit.gov.cn/",
   },
 };
 

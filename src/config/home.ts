@@ -14,6 +14,7 @@ export type HomeContent = {
   capabilities: Array<{ key: string; title: string; copy: string }>;
   stories: Array<{ eyebrow: string; title: string; copy: string; cta: string; image: string; tone?: "light" | "dark" }>;
   footerIntro: string;
+  filingLabel: string;
   footerColumns: Array<{ title: string; items: string[] }>;
   subscribeTitle: string;
   subscribeCopy: string;
@@ -74,11 +75,12 @@ export const HOME_CONTENT: Record<string, HomeContent> = {
       },
     ],
     footerIntro: "airdb 是一家非营利技术组织，致力于通过数据、软件与协作，支持社会组织与社区解决复杂的社会与环境挑战。",
+    filingLabel: "陕ICP备2022002988号-1",
     footerColumns: [
       { title: "关于我们", items: ["我们的使命", "团队", "新闻动态", "报告与财务"] },
       { title: "我们的工作", items: ["人道援助", "气候与环境", "健康与福祉", "教育与机会"] },
       { title: "资源与洞见", items: ["博客", "研究与报告", "工具与开源", "活动与网络"] },
-      { title: "支持我们", items: ["捐赠", "合作伙伴计划", "志愿者", "联系我们"] },
+      { title: "支持我们", items: ["合作伙伴计划", "志愿者", "联系我们"] },
     ],
     subscribeTitle: "订阅我们的更新",
     subscribeCopy: "获取我们的最新动态与洞见。",
@@ -137,11 +139,12 @@ export const HOME_CONTENT: Record<string, HomeContent> = {
       },
     ],
     footerIntro: "airdb is a nonprofit technology organization using data, software, and collaboration to help communities solve complex social and environmental challenges.",
+    filingLabel: "Shaanxi ICP 2022002988-1",
     footerColumns: [
       { title: "About", items: ["Mission", "Team", "News", "Reports and finance"] },
       { title: "Our work", items: ["Humanitarian aid", "Climate", "Wellbeing", "Education"] },
       { title: "Insights", items: ["Blog", "Research", "Open tools", "Events and networks"] },
-      { title: "Support", items: ["Donate", "Partner", "Volunteer", "Contact"] },
+      { title: "Support", items: ["Partner", "Volunteer", "Contact"] },
     ],
     subscribeTitle: "Subscribe for updates",
     subscribeCopy: "Get our latest news and insight.",

@@ -560,6 +560,10 @@ main.shell {
   line-height: 1.65;
 }
 
+.footer-brand-column small {
+  display: block;
+}
+
 .footer-brand-column p {
   margin: 0 0 10px;
 }
@@ -622,9 +626,71 @@ main.shell {
 .summary-card,
 .spotlight,
 .feature-card,
-.home-links,
-.site-footer {
+.home-links {
   display: none;
+}
+
+.site-footer {
+  display: block;
+  margin-top: 8px;
+  padding: 18px 0 24px;
+  border-top: 1px solid rgba(220, 207, 185, 0.75);
+}
+
+.footer-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 480px);
+  gap: 20px;
+  align-items: end;
+}
+
+.footer-mark {
+  margin: 0 0 8px;
+  color: var(--teal);
+  font-family: "Iowan Old Style", "Songti SC", "Source Han Serif SC", serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.footer-shell h2 {
+  margin: 0;
+  color: var(--teal);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.footer-meta {
+  text-align: right;
+}
+
+.footer-meta p,
+.footer-compliance p {
+  margin: 0;
+  color: #5f6863;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.footer-compliance {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.footer-separator {
+  display: inline-block;
+  margin: 0 8px;
+  color: #8b8f87;
+}
+
+.filing-link {
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.filing-link:hover {
+  color: var(--teal-strong);
 }
 
 .page-content {
@@ -746,6 +812,15 @@ main.shell {
   .reference-footer {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .footer-shell {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .footer-meta {
+    text-align: left;
+  }
 }
 
 @media (max-width: 720px) {
@@ -857,5 +932,9 @@ main.shell {
 
   .article-shell {
     padding: 28px 20px;
+  }
+
+  .site-footer {
+    padding: 18px 0 24px;
   }
 }

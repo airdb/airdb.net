@@ -19,6 +19,9 @@ const {
   brandTagline = "",
   footerTitle = "",
   footerCopy = "",
+  copyrightLabel = "",
+  filingLabel = "",
+  filingUrl = "https://beian.miit.gov.cn/",
 } = Astro.props as {
   title: string;
   description?: string;
@@ -31,6 +34,9 @@ const {
   brandTagline?: string;
   footerTitle?: string;
   footerCopy?: string;
+  copyrightLabel?: string;
+  filingLabel?: string;
+  filingUrl?: string;
 };
 
 function isActive(url?: string) {
@@ -110,7 +116,20 @@ function isActive(url?: string) {
           <p class="footer-mark">airdb</p>
           <h2>{footerTitle}</h2>
         </div>
-        <p>{footerCopy}</p>
+        <div class="footer-meta">
+          <p>{footerCopy}</p>
+        </div>
+      </div>
+      <div class="shell footer-compliance">
+        <p>
+          {copyrightLabel && <span>{copyrightLabel}</span>}
+          {copyrightLabel && filingLabel && <span class="footer-separator">|</span>}
+          {filingLabel && (
+            <a class="filing-link" href={filingUrl} target="_blank" rel="nofollow noopener noreferrer">
+              {filingLabel}
+            </a>
+          )}
+        </p>
       </div>
     </footer>
   </body>
