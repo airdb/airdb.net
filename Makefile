@@ -11,8 +11,11 @@ help: ## Show help messages
 	@echo "Commands:"
 	@sed -n '/##/s/\(.*\):.*##/  \1#/p' ${MAKEFILE_LIST} | grep -v "MAKEFILE_LIST" | column -t -c 2 -s '#'
 
-run:
+run: ## Run locally
 	pnpm dev
 
-build:
+install: ## Install dependencies
+	pnpm install --frozen-lockfile
+
+build: ## Build website
 	pnpm build
