@@ -35,7 +35,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           force_orphan: true
-          cname: airdb.group
+          #cname: airdb.net
           #enable_jekyll: true
           publish_branch: gh-pages
           publish_dir: dist
