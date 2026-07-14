@@ -1,24 +1,26 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
-
 version: 2
 updates:
-  - package-ecosystem: "pnpm" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  # npm ecosystem 同样负责 pnpm-lock.yaml
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
       interval: "monthly"
-    # 锁定版本更新策略，避免破坏性大版本自动升级
     versioning-strategy: increase
     commit-message:
-      prefix: deps
-    # 允许更新所有依赖
-    allow:
-      dependency-type: all
-    # 限制一次最多打开5个PR，防止批量冲突
-    pull-requests:
-      maximum-pull-requests: 5
-    # 使用更高版本pnpm适配现代lock
-    runtime:
-      pnpm: "latest"
+      prefix: "deps"
+    open-pull-requests-limit: 5
+    # minor/patch 合并成一个 PR，减少噪音；major 单独开
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+
+  # 同步维护 workflow 里 pin 到 commit SHA 的 action 版本
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    commit-message:
+      prefix: "ci"
+    open-pull-requests-limit: 5
