@@ -14,7 +14,7 @@
     "astro": "^7.0.0",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.11.1",
-    "marked": "^16.4.1",
+    "marked": "^18.0.6",
     "marked-highlight": "^2.2.2"
   }
 }
