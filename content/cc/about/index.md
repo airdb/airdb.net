@@ -1,7 +1,7 @@
 ---
 title: "简介"
 description: "喜农，乐农，助农"
-featured_image: '/images/xx.jpg'
+featured_image: ''
 menu:
   main:
     weight: 1

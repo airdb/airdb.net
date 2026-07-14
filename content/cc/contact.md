@@ -8,5 +8,6 @@ menu: main
 
 ---
 
-
-{{< figure src="/images/qrcode_wxkf.png" title="微信扫码，即可联系官方客服" >}}
+<!-- 客服二维码图片从未入库，线上一直是张 404 的破图。
+     拿到真实二维码后放到 static/images/ 并恢复：
+     {{< figure src="/images/qrcode_wxkf.png" title="微信扫码，即可联系官方客服" >}} -->
