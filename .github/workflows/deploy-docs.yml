@@ -3,7 +3,13 @@ name: Deploy Docs
 permissions:
   contents: write
 
-on: [push]
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: gh-pages-deploy
+  cancel-in-progress: true
 
 jobs:
   deploy-gh-pages:
@@ -11,17 +17,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+
+      - name: Install PNPM
+        uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
         with:
-          fetch-depth: 0
+          version: 10
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
         with:
           node-version: 26
-          package-manager-cache: false
-
-      - name: Install PNPM
-        run: npm i -g pnpm
+          cache: pnpm
 
       - name: Build Docs
         env:
@@ -31,11 +37,10 @@ jobs:
           make build
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           force_orphan: true
-          cname: airdb.net
-          #enable_jekyll: true
           publish_branch: gh-pages
           publish_dir: dist
+          cname: airdb.net

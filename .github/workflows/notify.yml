@@ -8,6 +8,6 @@ jobs:
     - name: Discord notification
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      uses: Ilshidur/action-discord@master
+      uses: Ilshidur/action-discord@d2594079a10f1d6739ee50a2471f0ca57418b554 # 0.4.0
       with:
         args: '{{ GITHUB_SERVER_URL }}/{{ GITHUB_REPOSITORY }} The branch {{ GITHUB_REF_NAME }} has been pushed by {{ EVENT_PAYLOAD.sender.login }}.'
