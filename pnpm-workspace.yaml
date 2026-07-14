@@ -1,2 +1,12 @@
+# 供应链策略：依赖需发布满 24 小时（1440 分钟）才允许安装，
+# 防止刚被投毒/接管的新版本立即进入构建。
+minimumReleaseAge: 1440
+
+# 信任名单：Astro 官方编译器二进制（@astrojs/compiler-rs 及其平台 binding）
+# 随 astro 主包同步发版，发布即被依赖，否则每次 Astro 发版后 24 小时内 CI 都会误伤。
+minimumReleaseAgeExclude:
+  - '@astrojs/*'
+
 allowBuilds:
   esbuild: true
+
