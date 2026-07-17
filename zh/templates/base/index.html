@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Base 模板 and Blocks | airdb</title><meta name="description" content="The base and block constructs allow you to define the outer shell of your master templates (i.e., the chrome of the page)."><meta property="og:title" content="Base 模板 and Blocks | airdb"><meta property="og:description" content="The base and block constructs allow you to define the outer shell of your master templates (i.e., the chrome of the page)."><meta property="og:type" content="website"><meta property="og:url" content="https://airdb.net/zh/templates/base/"><link rel="canonical" href="https://airdb.net/zh/templates/base/"><link rel="icon" href="/favicon.ico"><link rel="stylesheet" href="/_astro/BaseLayout.CF4wxHky.css"></head><body><div class="page-orbit page-orbit-left"></div><div class="page-orbit page-orbit-right"></div><header class="site-header"><div class="shell"><div class="header-bar"><a class="brand" href="/zh/"><span class="brand-mark">airdb</span></a><nav class="top-nav" aria-label="Global"><a href="/zh/news/">公益新闻</a><a href="/zh/about/">团队介绍</a><a href="/zh/dev/">开发环境</a><a href="/zh/showcase/">成果展示</a><a href="https://bbs.airdb.net/">社区</a><a href="https://github.com/airdb">GitHub</a></nav><div class="language-switch" aria-label="Language switcher"><a class="language-pill active" href="/zh/templates/base/" hreflang="zh">中文</a><span class="language-divider">/</span><a class="language-pill" href="/cc/" hreflang="cc">EN</a></div></div></div></header><main class="shell with-sidebar"><aside class="sidebar"><div class="sidebar-panel"><p class="sidebar-label">目录</p><nav aria-label="Section"><a class="active" href="/zh/templates/base/">Base 模板 and Blocks</a></nav></div></aside><div class="page-content"><article class="article-shell"><header class="article-header"><h1>Base 模板 and Blocks</h1><p class="article-description">The base and block constructs allow you to define the outer shell of your master templates (i.e., the chrome of the page).</p><div class="article-meta"><span>内容导览</span><span>templates</span></div></header><div class="prose"><p>The <code>block</code> keyword allows you to define the outer shell of your pages&#39; one or more master template(s) and then fill in or override portions as necessary.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/QVOMCYitLEc" title="YouTube video" loading="lazy" allowfullscreen></iframe></div>
+
+<h2>Base Template Lookup Order</h2>
+<p>The <a href="/templates/lookup-order/">lookup order</a> for base templates is as follows:</p>
+<ol>
+<li><code>/layouts/section/&lt;TYPE&gt;-baseof.html</code></li>
+<li><code>/themes/&lt;THEME&gt;/layouts/section/&lt;TYPE&gt;-baseof.html</code></li>
+<li><code>/layouts/&lt;TYPE&gt;/baseof.html</code></li>
+<li><code>/themes/&lt;THEME&gt;/layouts/&lt;TYPE&gt;/baseof.html</code></li>
+<li><code>/layouts/section/baseof.html</code></li>
+<li><code>/themes/&lt;THEME&gt;/layouts/section/baseof.html</code></li>
+<li><code>/layouts/_default/&lt;TYPE&gt;-baseof.html</code></li>
+<li><code>/themes/&lt;THEME&gt;/layouts/_default/&lt;TYPE&gt;-baseof.html</code></li>
+<li><code>/layouts/_default/baseof.html</code></li>
+<li><code>/themes/&lt;THEME&gt;/layouts/_default/baseof.html</code></li>
+</ol>
+<p>Variables are denoted by capitalized text set within <code>&lt;&gt;</code>. Note that Hugo&#39;s default behavior is for <code>type</code> to inherit from <code>section</code> unless otherwise specified.</p>
+<h3>Example Base Template Lookup Order</h3>
+<p>As an example, let&#39;s assume your site is using a theme called &quot;mytheme&quot; when rendering the section list for a <code>posts</code> section. Hugo picks <code>layout/section/posts.html</code> as the template for <a href="/templates/section-templates/">rendering the section</a>. The <code>{{define}}</code> block in this template tells Hugo that the template is an extension of a base template.</p>
+<p>Here is the lookup order for the <code>posts</code> base template:</p>
+<ol>
+<li><code>/layouts/section/posts-baseof.html</code></li>
+<li><code>/themes/mytheme/layouts/section/posts-baseof.html</code></li>
+<li><code>/layouts/posts/baseof.html</code></li>
+<li><code>/themes/mytheme/layouts/posts/baseof.html</code></li>
+<li><code>/layouts/section/baseof.html</code></li>
+<li><code>/themes/mytheme/layouts/section/baseof.html</code></li>
+<li><code>/layouts/_default/posts-baseof.html</code></li>
+<li><code>/themes/mytheme/layouts/_default/posts-baseof.html</code></li>
+<li><code>/layouts/_default/baseof.html</code></li>
+<li><code>/themes/mytheme/layouts/_default/baseof.html</code></li>
+</ol>
+<h2>Define the Base Template</h2>
+<p>The following defines a simple base template at <code>_default/baseof.html</code>. As a default template, it is the shell from which all your pages will be rendered unless you specify another <code>*baseof.html</code> closer to the beginning of the lookup order.</p>
+<pre><code class="hljs language-html"><span class="hljs-meta">&lt;!doctype <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;zh-CN&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>{{ block &quot;title&quot; . }}{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}{{ end }}<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>
+      {{ block &quot;header&quot; . }}{{ end }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span>
+      {{ block &quot;main&quot; . }}{{ end }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span>
+      {{ block &quot;footer&quot; . }}{{ end }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre><h2>Override the Base Template</h2>
+<p>From the above base template, you can define a <a href="/templates/lists">default list template</a>. The default list template will inherit all of the code defined above and can then implement its own <code>&quot;main&quot;</code> block from:</p>
+<pre><code class="hljs language-html">{{ define &quot;main&quot; }}
+  <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>{{ .Title }}<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+      {{ range .Pages }}
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;{{ .RelPermalink }}&quot;</span>&gt;</span>{{ .Title }}<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      {{ end }}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+{{ end }}
+</code></pre><p>This replaces the contents of our (basically empty) &quot;main&quot; block with something useful for the list template. In this case, we didn&#39;t define a <code>&quot;title&quot;</code> block, so the contents from our base template remain unchanged in lists.</p>
+<aside class="callout warning">
+Code that you put outside the block definitions *can* break your layout. This even includes HTML comments. For example:
+
+<pre><code><span class="language-xml"><span class="hljs-comment">&lt;!-- Seemingly harmless HTML comment..that will break your layout at build --&gt;</span>
+</span><span class="hljs-template-variable">{{ <span class="hljs-name">define</span> <span class="hljs-string">&quot;main&quot;</span> }}</span><span class="language-xml">
+...your code here
+</span><span class="hljs-template-variable">{{ <span class="hljs-name">end</span> }}</span>
+</code></pre><p><a href="https://discourse.gohugo.io/t/baseof-html-block-templates-and-list-types-results-in-empty-pages/5612/6">See this thread from the Hugo discussion forums.</a></p>
+</aside>
+
+<p>The following shows how you can override both the <code>&quot;main&quot;</code> and <code>&quot;title&quot;</code> block areas from the base template with code unique to your <a href="/templates/single-page-templates/">default single page template</a>:</p>
+<pre><code class="hljs language-html">{{ define &quot;main&quot; }}
+  <span class="hljs-tag">&lt;<span class="hljs-name">article</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>{{ .Title }}<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    {{ .Content }}
+  <span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span>
+{{ end }}
+</code></pre></div></article></div></main><footer class="site-footer"><div class="shell footer-shell"><div><p class="footer-mark">airdb</p><h2>用技术把好事做长久</h2></div><div class="footer-meta"><p>持续为公益组织提供长期稳定的数字化支持。</p></div></div><div class="shell footer-compliance"><p><span>©2026 airdb 保留所有权利</span><span class="footer-separator">|</span><a class="filing-link" href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener noreferrer">陕ICP备2022002988号-1</a></p></div></footer></body></html>
