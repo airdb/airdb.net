@@ -12,7 +12,7 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
     "@iarna/toml": "^2.2.5",
-    "astro": "^7.0.0",
+    "astro": "^7.1.0",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.11.1",
     "marked": "^16.4.1",
